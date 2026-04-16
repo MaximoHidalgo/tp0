@@ -1,11 +1,14 @@
 #include "server.h"
 
-int main(void) {
+int main(void)
+{
 	logger = log_create("log.log", "Servidor", 1, LOG_LEVEL_DEBUG);
 
 	int server_fd = iniciar_servidor();
 	log_info(logger, "Servidor listo para recibir al cliente");
+
 	int cliente_fd = esperar_cliente(server_fd);
+	log_info(logger, "Cliente conectado");
 
 	t_list* lista;
 	while (1) {
@@ -30,6 +33,6 @@ int main(void) {
 	return EXIT_SUCCESS;
 }
 
-void iterator(char* value) {
+void iterator(char* value){
 	log_info(logger,"%s", value);
 }
